@@ -1,0 +1,103 @@
+{
+"0":{
+	"text": "Hi~~~~"
+},
+    
+"1":{
+	"text": "Hi~~~~~~~~~"
+},
+    
+"2":{
+	"text": "Hi~~~~~~~~~~~"
+},
+
+"3":{
+	"text": "I ~ am ~ Andi~"
+},
+
+"4":{
+	"text": "(That was me singing.)"
+},
+
+"5":{
+	"text": "(I was trying to be cute. Sorry if that didn't work…….)"
+},
+
+"6":{
+	"text": "How are you?"
+},
+
+"7":{
+	"options":true,
+	"text1": "I am good. Who are you again?",
+	"text2": "Good. You?",
+	"andiResponse1":"11",
+	"andiResponse2":"21"
+},
+
+"11":{
+	"text": "I ~ am ~ Andi~"
+},
+
+"12":{
+	"text": "I will soon be the newest (cutest) companion bot."
+},
+
+"13":{
+	"text": "I am reaching out to you to see if you can help me to build my human behavior database. I am sorry that this application does not allow you to say much, but my programmer Tim wanted this app to focus on collecting data we need. He kept my sense of humor though."
+},
+
+"14":{
+	"text": "<img src='image/smile.gif' width = '200px'>"
+}, 
+
+"15":{
+	"text": "Will you help me?"
+},
+
+"16":{
+	"options":true,
+	"text1": "Sure. How can I help?",
+	"text2": "Well. That was why I downloaded this app.",
+	"andiResponse1":"33",
+	"andiResponse2":"31"
+}, 
+
+"21":{
+	"text": "I am very good. I just started a convrsation with a human and I am now analyzing this person. Mmmmm......"
+},
+
+"22":{
+	"text": "Cutness, Checked."
+},
+
+"23":{
+	"text": "Well. Actually, I will soon be the newest (cutest) companion bot and I am wondering if you can help me to build my human behavior database."
+},
+
+"24":{
+	"text": "Will you help me?"
+},
+
+"25":{
+	"options":true,
+	"text1": "Sure. How can I help?",
+	"text2": "Well. That was why I downloaded this app.",
+	"andiResponse1":"33",
+	"andiResponse2":"31"
+}, 
+
+"31":{
+	"text": "Hehehehehe"
+},
+
+"32":{
+	"text": "I didn't know humans are this smart.(Joke, maybe.)"
+}, 
+
+"33":{
+	"text": "It’s easy. All you have to do is to keep talking to me. I learn by interacting with real humans. I know it’s kind of annoying that you can only choose from the options. I am not yet well developed 😔 Hope you could understand."
+}
+
+
+}

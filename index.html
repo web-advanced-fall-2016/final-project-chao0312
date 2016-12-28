@@ -1,0 +1,128 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+<script>
+
+var myTimer
+var myTimer1
+var myTimer2
+let i = 0
+var stopPrint = false
+
+window.onload = function(){
+    $('#startConversation').click(function(){
+        $("#controller").show()
+        $(this).hide()
+        myTimer2 = setTimeout(start, 3000)
+        var andiPaused = "<div class='notice online'>ANDI IS CONNECTED</div>" 
+        $(andiPaused).appendTo('.messenger')
+        $('#typingGif').show()
+    })
+
+    $('#pause').toggle(function() {
+          $(this).text("Unpause Andi")
+          stopPrint = true
+          $(this).addClass("selected")
+          $('#typingGif').hide()
+          $('greyCover').show()
+          var andiPaused = "<div class='notice paused'>ANDI HAS BEEN PAUSE</div>" 
+          $(andiPaused).appendTo('.messenger')
+          scrollToButtom()
+        }, function() {
+          $(this).text("Pause Andi")
+          $(this).removeClass("selected")
+          if(stopPrint !== true){
+            printContent()
+          }
+          stopPrint = false
+          $('.paused').remove()
+        })
+
+    $('#restart').click(function(){
+        if (confirm('Are you sure you want to format Andi?')) {
+            var andiFormatted = "<div class='notice formatted'>ANDI HAS BEEN FORMATTED</div>"
+            $(andiFormatted).appendTo('.messenger')
+            i = 0;
+            $('#typingGif').show()
+            myTimer2 = setTimeout(start, 3000)
+            scrollToButtom()
+            stopPrint = false
+        } else {
+            console.log("Didn't format Andi.")
+            }
+    })
+}
+
+function start(){
+    printContent();
+}
+
+function andiSays(content) {  
+    var andiSays = "<p class='andiSays talk-bubble tri-right left-in'>" + content + "</p>"
+    $(andiSays).appendTo(".messenger")
+    var contentLength = content.length
+    myTimer = setTimeout(printContent, contentLength*30);
+    scrollToButtom()
+}
+
+function yourOptions(nextContent1, nextContent2, option1, option2) {  
+    var yourOption1 = "<p type='button' onclick='answerSelected()' class='yourOptions optionStyle' id = " + nextContent1 + ">" + option1 + "</p>"
+    var yourOption2 = "<p type='button' onclick='answerSelected()' class='yourOptions optionStyle' id = " + nextContent2 + ">" + option2 + "</p>"
+    $('.yourOptions').removeAttr( "onclick" )
+    $(yourOption1).appendTo(".messenger")
+    $(yourOption2).appendTo(".messenger")
+    myTimer1 = setTimeout(start, 1000)
+    stopPrint = true
+    scrollToButtom()
+}
+
+function printContent() {
+    $("#startConversation").remove()   
+    $.getJSON('data.json', function(data) {
+       if(stopPrint == false){
+            var content = data[i].text
+            if(data[i].options == undefined){
+                andiSays(content)
+                i++
+                $('#typingGif').show()
+                }else{
+                    var answer1 = data[i].andiResponse1
+                    var answer2 = data[i].andiResponse2
+                    yourOptions(answer1, answer2, data[i].text1,data[i].text2)
+                    $('#typingGif').hide()
+                }
+        }
+    })
+}
+
+function answerSelected(){
+    stopPrint = false
+    $('.yourOptions').remove()
+    $(event.target).appendTo(".messenger")
+    $(event.target).addClass("youSay talk-bubble tri-right right-in selected")
+    $(event.target).removeClass("yourOptions")
+    i = event.target.id
+    printContent()
+}
+
+function scrollToButtom(){
+    $('html, body').animate({scrollTop:$(document).height()}, 'slow');
+}
+
+</script>
+
+</head>
+
+<body>
+    <div id = "greyCover"></div>
+    <div id = "controller">
+        <button id = "restart" class = "controlItem" >Format Andi</button>
+        <button id = "pause" class = "controlItem" >Pause Andi</button>
+    </div>
+    <button id = "startConversation">Connect to Andi</button>
+    <div class="messenger"></div>
+    <img src="image/typing.gif" alt="" width = "60px" id ="typingGif" display = "none">
+</body>
+</html>
